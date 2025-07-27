@@ -1,39 +1,9 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Index - SnapFolio Bootstrap Template</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
-
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-  <!-- Main CSS File -->
-  <link href="assets/css/main.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: SnapFolio
-  * Template URL: https://bootstrapmade.com/snapfolio-bootstrap-portfolio-template/
-  * Updated: Jul 21 2025 with Bootstrap v5.3.7
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  {% include 'home/include/header.html' %}
 </head>
 
 <body class="index-page">
@@ -99,7 +69,7 @@
 
             <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
               <div class="hero-text">
-                <h1>Snap<span class="accent-text">Folio</span></h1>
+              
                 <h2>Alexander Chen</h2>
                 <p class="lead">I'm a <span class="typed" data-typed-items="UI/UX Designer, Web Developer, Brand Strategist, Creative Director"></span></p>
                 <p class="description">Passionate about creating exceptional digital experiences that blend innovative design with functional development. Let's bring your vision to life.</p>
@@ -110,8 +80,8 @@
                 </div>
 
                 <div class="social-links">
-<!--                  <a href="#"><i class="bi bi-dribbble"></i></a>-->
-<!--                  <a href="#"><i class="bi bi-behance"></i></a>-->
+                  <a href="#"><i class="bi bi-instagram"></i></a>
+                  <a href="#"><i class="bi bi-telegram"></i></a>
                   <a href="#"><i class="bi bi-github"></i></a>
                   <a href="#"><i class="bi bi-linkedin"></i></a>
                 </div>
@@ -122,7 +92,7 @@
               <div class="hero-visual">
                 <div class="profile-container">
                   <div class="profile-background"></div>
-                  <img src="assets/img/profile/profile-2.webp" alt="Alexander Chen" class="profile-image">
+                  <img src="{%static 'img/profile/profile-2.webp' %}" alt="Alexander Chen" class="profile-image">
                 </div>
               </div>
             </div>
@@ -143,7 +113,7 @@
             <div class="profile-card">
               <div class="profile-header">
                 <div class="profile-image">
-                  <img src="assets/img/profile/profile-square-3.webp" alt="Profile Image" class="img-fluid">
+                  <img src="{% static 'img/profile/profile-square-3.webp'%}" alt="Profile Image" class="img-fluid">
                 </div>
                 <div class="profile-badge">
                   <i class="bi bi-check-circle-fill"></i>
@@ -242,7 +212,7 @@
     </section><!-- /About Section -->
 
     <!-- Stats Section -->
-    <section id="stats" class="stats section light-background">
+    {% comment %} <section id="stats" class="stats section light-background">
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
 
@@ -286,7 +256,7 @@
 
       </div>
 
-    </section><!-- /Stats Section -->
+    </section><!-- /Stats Section --> {% endcomment %}
 
     <!-- Skills Section -->
     <section id="skills" class="skills section">
@@ -401,7 +371,7 @@
           <div class="col-lg-4">
             <div class="resume-side" data-aos="fade-right" data-aos-delay="100">
               <div class="profile-img mb-4">
-                <img src="assets/img/profile/profile-square-2.webp" alt="Profile" class="img-fluid rounded">
+                <img src="{% static 'img/profile/profile-square-2.webp'%}" alt="Profile" class="img-fluid rounded">
               </div>
 
               <h3>Professional Summary</h3>
@@ -562,13 +532,13 @@
 
                 <div class="col-lg-6 col-md-6 portfolio-item isotope-item filter-photography">
                   <div class="portfolio-wrap">
-                    <img src="assets/img/portfolio/portfolio-portrait-1.webp" class="img-fluid" alt="Portfolio Image" loading="lazy">
+                    <img src="{% static 'img/portfolio/portfolio-portrait-1.webp'%}" class="img-fluid" alt="Portfolio Image" loading="lazy">
                     <div class="portfolio-info">
                       <div class="content">
                         <span class="category">Photography</span>
                         <h4>Capturing Moments</h4>
                         <div class="portfolio-links">
-                          <a href="assets/img/portfolio/portfolio-portrait-1.webp" class="glightbox" title="Capturing Moments"><i class="bi bi-plus-lg"></i></a>
+                          <a href="{% static "/img/portfolio/portfolio-portrait-1.webp" %}%}" class="glightbox" title="Capturing Moments"><i class="bi bi-plus-lg"></i></a>
                           <a href="portfolio-details.html" title="More Details"><i class="bi bi-arrow-right"></i></a>
                         </div>
                       </div>
@@ -578,13 +548,13 @@
 
                 <div class="col-lg-6 col-md-6 portfolio-item isotope-item filter-design">
                   <div class="portfolio-wrap">
-                    <img src="assets/img/portfolio/portfolio-2.webp" class="img-fluid" alt="Portfolio Image" loading="lazy">
+                    <img src="{% static 'img/portfolio/portfolio-2.webp'%}" class="img-fluid" alt="Portfolio Image" loading="lazy">
                     <div class="portfolio-info">
                       <div class="content">
                         <span class="category">Web Design</span>
                         <h4>Woodcraft Design</h4>
                         <div class="portfolio-links">
-                          <a href="assets/img/portfolio/portfolio-2.webp" class="glightbox" title="Woodcraft Design"><i class="bi bi-plus-lg"></i></a>
+                          <a href="{% static "/img/portfolio/portfolio-2.webp" %}%}" class="glightbox" title="Woodcraft Design"><i class="bi bi-plus-lg"></i></a>
                           <a href="portfolio-details.html" title="More Details"><i class="bi bi-arrow-right"></i></a>
                         </div>
                       </div>
@@ -594,13 +564,13 @@
 
                 <div class="col-lg-6 col-md-6 portfolio-item isotope-item filter-automotive">
                   <div class="portfolio-wrap">
-                    <img src="assets/img/portfolio/portfolio-portrait-2.webp" class="img-fluid" alt="Portfolio Image" loading="lazy">
+                    <img src="{% static 'img/portfolio/portfolio-portrait-2.webp'%}" class="img-fluid" alt="Portfolio Image" loading="lazy">
                     <div class="portfolio-info">
                       <div class="content">
                         <span class="category">Automotive</span>
                         <h4>Classic Beauty</h4>
                         <div class="portfolio-links">
-                          <a href="assets/img/portfolio/portfolio-portrait-2.webp" class="glightbox" title="Classic Beauty"><i class="bi bi-plus-lg"></i></a>
+                          <a href="{% static "/img/portfolio/portfolio-portrait-2.webp" %}%}" class="glightbox" title="Classic Beauty"><i class="bi bi-plus-lg"></i></a>
                           <a href="portfolio-details.html" title="More Details"><i class="bi bi-arrow-right"></i></a>
                         </div>
                       </div>
@@ -610,13 +580,13 @@
 
                 <div class="col-lg-6 col-md-6 portfolio-item isotope-item filter-nature">
                   <div class="portfolio-wrap">
-                    <img src="assets/img/portfolio/portfolio-portrait-4.webp" class="img-fluid" alt="Portfolio Image" loading="lazy">
+                    <img src="{% static 'img/portfolio/portfolio-portrait-4.webp'%}" class="img-fluid" alt="Portfolio Image" loading="lazy">
                     <div class="portfolio-info">
                       <div class="content">
                         <span class="category">Nature</span>
                         <h4>Natural Growth</h4>
                         <div class="portfolio-links">
-                          <a href="assets/img/portfolio/portfolio-portrait-4.webp" class="glightbox" title="Natural Growth"><i class="bi bi-plus-lg"></i></a>
+                          <a href="{% static "/img/portfolio/portfolio-portrait-4.webp" %}%}" class="glightbox" title="Natural Growth"><i class="bi bi-plus-lg"></i></a>
                           <a href="portfolio-details.html" title="More Details"><i class="bi bi-arrow-right"></i></a>
                         </div>
                       </div>
@@ -626,13 +596,13 @@
 
                 <div class="col-lg-6 col-md-6 portfolio-item isotope-item filter-photography">
                   <div class="portfolio-wrap">
-                    <img src="assets/img/portfolio/portfolio-5.webp" class="img-fluid" alt="Portfolio Image" loading="lazy">
+                    <img src="{% static 'img/portfolio/portfolio-5.webp'%}" class="img-fluid" alt="Portfolio Image" loading="lazy">
                     <div class="portfolio-info">
                       <div class="content">
                         <span class="category">Photography</span>
                         <h4>Urban Stories</h4>
                         <div class="portfolio-links">
-                          <a href="assets/img/portfolio/portfolio-5.webp" class="glightbox" title="Urban Stories"><i class="bi bi-plus-lg"></i></a>
+                          <a href="{% static "/img/portfolio/portfolio-5.webp" %}%}" class="glightbox" title="Urban Stories"><i class="bi bi-plus-lg"></i></a>
                           <a href="portfolio-details.html" title="More Details"><i class="bi bi-arrow-right"></i></a>
                         </div>
                       </div>
@@ -642,13 +612,13 @@
 
                 <div class="col-lg-6 col-md-6 portfolio-item isotope-item filter-design">
                   <div class="portfolio-wrap">
-                    <img src="assets/img/portfolio/portfolio-6.webp" class="img-fluid" alt="Portfolio Image" loading="lazy">
+                    <img src="{% static 'img/portfolio/portfolio-6.webp'%}" class="img-fluid" alt="Portfolio Image" loading="lazy">
                     <div class="portfolio-info">
                       <div class="content">
                         <span class="category">Web Design</span>
                         <h4>Digital Experience</h4>
                         <div class="portfolio-links">
-                          <a href="assets/img/portfolio/portfolio-6.webp" class="glightbox" title="Digital Experience"><i class="bi bi-plus-lg"></i></a>
+                          <a href="{% static "/img/portfolio/portfolio-6.webp" %}" class="glightbox" title="Digital Experience"><i class="bi bi-plus-lg"></i></a>
                           <a href="portfolio-details.html" title="More Details"><i class="bi bi-arrow-right"></i></a>
                         </div>
                       </div>
@@ -817,7 +787,7 @@
 <!--    </section>&lt;!&ndash; /Services Section &ndash;&gt;-->
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials section light-background">
+    {% comment %} <section id="testimonials" class="testimonials section light-background">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
@@ -837,7 +807,7 @@
               <p>Implementing innovative strategies has revolutionized our approach to market challenges and competitive positioning.</p>
               <div class="client-info">
                 <div class="client-image">
-                  <img src="assets/img/person/person-f-7.webp" alt="Client">
+                  <img src="{% static 'img/person/person-f-7.webp'%}" alt="Client">
                 </div>
                 <div class="client-details">
                   <h3>Rachel Bennett</h3>
@@ -855,7 +825,7 @@
               <p>Exceptional service delivery and innovative solutions have transformed our business operations, leading to remarkable growth and enhanced customer satisfaction across all touchpoints.</p>
               <div class="client-info">
                 <div class="client-image">
-                  <img src="assets/img/person/person-m-7.webp" alt="Client">
+                  <img src="{% static 'img/person/person-m-7.webp'%}" alt="Client">
                 </div>
                 <div class="client-details">
                   <h3>Daniel Morgan</h3>
@@ -873,7 +843,7 @@
               <p>Strategic partnership has enabled seamless digital transformation and operational excellence.</p>
               <div class="client-info">
                 <div class="client-image">
-                  <img src="assets/img/person/person-f-8.webp" alt="Client">
+                  <img src="{% static 'img/person/person-f-8.webp'%}" alt="Client">
                 </div>
                 <div class="client-details">
                   <h3>Emma Thompson</h3>
@@ -891,7 +861,7 @@
               <p>Professional expertise and dedication have significantly improved our project delivery timelines and quality metrics.</p>
               <div class="client-info">
                 <div class="client-image">
-                  <img src="assets/img/person/person-m-8.webp" alt="Client">
+                  <img src="{% static 'img/person/person-m-8.webp'%}" alt="Client">
                 </div>
                 <div class="client-details">
                   <h3>Christopher Lee</h3>
@@ -909,7 +879,7 @@
               <p>Collaborative approach and industry expertise have revolutionized our product development cycle, resulting in faster time-to-market and increased customer engagement levels.</p>
               <div class="client-info">
                 <div class="client-image">
-                  <img src="assets/img/person/person-f-9.webp" alt="Client">
+                  <img src="{% static 'img/person/person-f-9.webp'%}" alt="Client">
                 </div>
                 <div class="client-details">
                   <h3>Olivia Carter</h3>
@@ -927,7 +897,7 @@
               <p>Innovative approach to user experience design has significantly enhanced our platform's engagement metrics and customer retention rates.</p>
               <div class="client-info">
                 <div class="client-image">
-                  <img src="assets/img/person/person-m-13.webp" alt="Client">
+                  <img src="{% static 'img/person/person-m-13.webp'%}" alt="Client">
                 </div>
                 <div class="client-details">
                   <h3>Nathan Brooks</h3>
@@ -941,7 +911,7 @@
 
       </div>
 
-    </section><!-- /Testimonials Section -->
+    </section><!-- /Testimonials Section --> {% endcomment %}
 
     <!-- Contact Section -->
     <section id="contact" class="contact section">
@@ -1065,19 +1035,20 @@
   <div id="preloader"></div>
 
   <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/typed.js/typed.umd.js"></script>
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+<script src="{% static 'vendor/aos/aos.js' %}"></script>
+<script src="{% static 'vendor/typed.js/typed.umd.js' %}"></script>
+<script src="{% static 'vendor/purecounter/purecounter_vanilla.js' %}"></script>
+<script src="{% static 'vendor/waypoints/noframework.waypoints.js' %}"></script>
+<script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+<script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
+<script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
+
 
   <!-- Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script src="{% static 'js/main.js' %}"></script>
 
 </body>
 
