@@ -41,11 +41,10 @@
       </nav>
 
       <div class="social-links text-center">
-        <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
-<!--        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>-->
-        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-        <a href="#" class="google-plus"><i class="bi bi-skype"></i></a>
-        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        <a href="{{profile.instagram_link}}"><i class="bi bi-instagram"></i></a>
+                  <a href="{{profile.telegram_link}}"><i class="bi bi-telegram"></i></a>
+                  <a href="{{profile.github_link}}"><i class="bi bi-github"></i></a>
+                  <a href="{{profile.linkedin_link}}"><i class="bi bi-linkedin"></i></a>
       </div>
 
     </div>
@@ -70,9 +69,11 @@
             <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
               <div class="hero-text">
               
-                <h2>Alexander Chen</h2>
-                <p class="lead">I'm a <span class="typed" data-typed-items="UI/UX Designer, Web Developer, Brand Strategist, Creative Director"></span></p>
-                <p class="description">Passionate about creating exceptional digital experiences that blend innovative design with functional development. Let's bring your vision to life.</p>
+                <h2>{{ profile.name }}</h2>
+<p class="lead">
+ I'm a <span class="typed" data-typed-items="{% for job in profile.jobs.all %}{{ job.title }}{% if not forloop.last %}, {% endif %}{% endfor %}"></span>
+</p>
+<p class="description">{{ profile.description }}</p>
 
                 <div class="hero-actions">
                   <a href="#portfolio" class="btn btn-primary">View My Work</a>
@@ -80,10 +81,10 @@
                 </div>
 
                 <div class="social-links">
-                  <a href="#"><i class="bi bi-instagram"></i></a>
-                  <a href="#"><i class="bi bi-telegram"></i></a>
-                  <a href="#"><i class="bi bi-github"></i></a>
-                  <a href="#"><i class="bi bi-linkedin"></i></a>
+                  <a href="{{profile.instagram_link}}"><i class="bi bi-instagram"></i></a>
+                  <a href="{{profile.telegram_link}}"><i class="bi bi-telegram"></i></a>
+                  <a href="{{profile.github_link}}"><i class="bi bi-github"></i></a>
+                  <a href="{{profile.linkedin_link}}"><i class="bi bi-linkedin"></i></a>
                 </div>
               </div>
             </div>
@@ -92,7 +93,9 @@
               <div class="hero-visual">
                 <div class="profile-container">
                   <div class="profile-background"></div>
-                  <img src="{%static 'img/profile/profile-2.webp' %}" alt="Alexander Chen" class="profile-image">
+                  {% if profile.profile_pic %}
+                   <img src="{{ profile.profile_pic.url }}" alt="{{ profile.name }}" class="profile-image">
+                   {% endif %}
                 </div>
               </div>
             </div>
@@ -113,7 +116,7 @@
             <div class="profile-card">
               <div class="profile-header">
                 <div class="profile-image">
-                  <img src="{% static 'img/profile/profile-square-3.webp'%}" alt="Profile Image" class="img-fluid">
+                  <img src="{{profile.about_profile_pic.url}}" alt="{{ profile.name }}" class="img-fluid">
                 </div>
                 <div class="profile-badge">
                   <i class="bi bi-check-circle-fill"></i>
@@ -121,21 +124,21 @@
               </div>
 
               <div class="profile-content">
-                <h3>Marcus Thompson</h3>
-                <p class="profession">Creative Director &amp; Developer</p>
+                <h3>{{ profile.name }}</h3>
+                <p class="profession">{{profile.jobs.all.0.title}}</p>
 
                 <div class="contact-links">
-                  <a href="mailto:marcus@example.com" class="contact-item">
+                  <a href="{{profile.email}}" class="contact-item">
                     <i class="bi bi-envelope"></i>
-                    marcus@example.com
+                    {{ profile.email }}
                   </a>
-                  <a href="tel:+15551234567" class="contact-item">
+                  {% comment %} <a href="tel:+15551234567" class="contact-item">
                     <i class="bi bi-telephone"></i>
                     +1 (555) 123-4567
-                  </a>
+                  </a> {% endcomment %}
                   <a href="#" class="contact-item">
                     <i class="bi bi-geo-alt"></i>
-                    San Francisco, CA
+                    {{ profile.location }}
                   </a>
                 </div>
               </div>
@@ -146,27 +149,27 @@
             <div class="about-content">
               <div class="section-header">
                 <span class="badge-text">Get to Know Me</span>
-                <h2>Passionate About Creating Digital Experiences</h2>
+                <h2>{{ profile.about_title }}</h2>
               </div>
 
               <div class="description">
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                <p>{{ profile.about_text }}</p>
 
-                <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.</p>
+  
               </div>
 
               <div class="stats-grid">
                 <div class="stat-item">
-                  <div class="stat-number">150+</div>
-                  <div class="stat-label">Projects Completed</div>
+                  {% comment %} <div class="stat-number">150+</div>
+                  <div class="stat-label">Projects Completed</div> {% endcomment %}
                 </div>
                 <div class="stat-item">
-                  <div class="stat-number">5+</div>
+                  <div class="stat-number">1+</div>
                   <div class="stat-label">Years Experience</div>
                 </div>
                 <div class="stat-item">
-                  <div class="stat-number">98%</div>
-                  <div class="stat-label">Client Satisfaction</div>
+                  {% comment %} <div class="stat-number">98%</div>
+                  <div class="stat-label">Client Satisfaction</div> {% endcomment %}
                 </div>
               </div>
 
@@ -174,31 +177,31 @@
                 <div class="detail-row">
                   <div class="detail-item">
                     <span class="detail-label">Specialization</span>
-                    <span class="detail-value">UI/UX Design &amp; Development</span>
+                    <span class="detail-value">{{ profile.about_Specialization }}</span>
                   </div>
                   <div class="detail-item">
                     <span class="detail-label">Experience Level</span>
-                    <span class="detail-value">Senior Professional</span>
+                    <span class="detail-value">{{ profile.get_experience_level_display }}</span>
                   </div>
                 </div>
                 <div class="detail-row">
                   <div class="detail-item">
                     <span class="detail-label">Education</span>
-                    <span class="detail-value">Computer Science, MIT</span>
+                    <span class="detail-value">{{profile.about_Education}}</span>
                   </div>
                   <div class="detail-item">
                     <span class="detail-label">Languages</span>
-                    <span class="detail-value">English, Spanish, French</span>
+                    <span class="detail-value">{{ profile.about_Languages }}</span>
                   </div>
                 </div>
               </div>
 
               <div class="cta-section">
-                <a href="#" class="btn btn-primary">
+                <a href="{{profile.resume_link}}" class="btn btn-primary" target="_blank">
                   <i class="bi bi-download"></i>
                   Download Resume
                 </a>
-                <a href="#" class="btn btn-outline">
+                <a href="{{profile.telegram_link}}" class="btn btn-outline" target="_blank">
                   <i class="bi bi-chat-dots"></i>
                   Let's Talk
                 </a>
@@ -268,92 +271,34 @@
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="skills-category" data-aos="fade-up" data-aos-delay="200">
-              <h3>Front-end Development</h3>
-              <div class="skills-animation">
-                <div class="skill-item">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <h4>HTML/CSS</h4>
-                    <span class="skill-percentage">95%</span>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <div class="skill-tooltip">Expert level knowledge of semantic HTML5 and modern CSS3 techniques</div>
+    <div class="row">
+        {% for skill_box in skillboxes %}
+            <div class="col-lg-6" style="
+    margin-bottom: 40px;">
+                <div class="skills-category" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:'200' }}">
+                    <h3>{{ skill_box.title }}</h3>
+                    <div class="skills-animation">
+                        {% for skill in skill_box.skills.all %}
+                        <div class="skill-item">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h4>{{ skill.name }}</h4>
+                                <span class="skill-percentage">{{ skill.percent }}%</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="{{ skill.percent }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ skill.percent }}%;"></div>
+                            </div>
+                            <div class="skill-tooltip">
+                                {{ skill.description }}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
                 </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 
-                <div class="skill-item">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <h4>JavaScript</h4>
-                    <span class="skill-percentage">85%</span>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <div class="skill-tooltip">Strong proficiency in ES6+, DOM manipulation, and modern frameworks</div>
-                </div>
-
-                <div class="skill-item">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <h4>React</h4>
-                    <span class="skill-percentage">80%</span>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <div class="skill-tooltip">Experience with React hooks, state management, and component architecture</div>
-                </div>
-              </div>
-            </div><!-- End Frontend Skills -->
-          </div>
-
-          <div class="col-lg-6">
-            <div class="skills-category" data-aos="fade-up" data-aos-delay="300">
-              <h3>Back-end Development</h3>
-              <div class="skills-animation">
-                <div class="skill-item">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <h4>Node.js</h4>
-                    <span class="skill-percentage">75%</span>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <div class="skill-tooltip">Server-side JavaScript development with Express and REST APIs</div>
-                </div>
-
-                <div class="skill-item">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <h4>Python</h4>
-                    <span class="skill-percentage">70%</span>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <div class="skill-tooltip">Python development with Django and data analysis tools</div>
-                </div>
-
-                <div class="skill-item">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <h4>SQL</h4>
-                    <span class="skill-percentage">65%</span>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <div class="skill-tooltip">Database design, optimization, and complex queries</div>
-                </div>
-              </div>
-            </div><!-- End Backend Skills -->
-          </div>
-        </div>
-
-      </div>
-
-    </section><!-- /Skills Section -->
 
     <!-- Resume Section -->
     <section id="resume" class="resume section">
@@ -361,7 +306,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Resume</h2>
-        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        <p>Backend developer with experience in Django and Python, focused on building scalable, secure, and efficient web applications. Passionate about clean code, database design, and solving real-world problems through technology.</p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -371,61 +316,33 @@
           <div class="col-lg-4">
             <div class="resume-side" data-aos="fade-right" data-aos-delay="100">
               <div class="profile-img mb-4">
-                <img src="{% static 'img/profile/profile-square-2.webp'%}" alt="Profile" class="img-fluid rounded">
+                <img src="{{profile.about_profile_pic.url}}" alt="Profile" class="img-fluid rounded">
               </div>
 
               <h3>Professional Summary</h3>
-              <p>Driven software architect with expertise in developing scalable, high-performance enterprise solutions. Passionate about leveraging cutting-edge technologies to solve complex business challenges.</p>
+              <p>{{profile.resume_professional_summary}}</p>
 
               <h3 class="mt-4">Contact Information</h3>
               <ul class="contact-info list-unstyled">
-                <li><i class="bi bi-geo-alt"></i> 742 Evergreen Terrace, Springfield, MA 02101</li>
-                <li><i class="bi bi-envelope"></i> contact@example.com</li>
-                <li><i class="bi bi-phone"></i> +1 (555) 123-4567</li>
-                <li><i class="bi bi-linkedin"></i> linkedin.com/in/example</li>
+                <li><i class="bi bi-geo-alt"></i>{{profile.location}}</li>
+                <li><i class="bi bi-envelope"></i> {{profile.email}}</li>
+                {% comment %} <li><i class="bi bi-phone"></i> +1 (555) 123-4567</li> {% endcomment %}
+                <li><i class="bi bi-linkedin"></i>{{profile.linkedin_link}}</li>
               </ul>
-
+              
               <div class="skills-animation mt-4">
                 <h3>Technical Skills</h3>
+                {% for skill_box in skillboxes %}
                 <div class="skill-item">
                   <div class="d-flex justify-content-between">
-                    <span>Web Development</span>
-                    <span>95%</span>
+                    <span>{{skill_box.title}}</span>
+                    <span>{{skill_box.skills.all.0.percent}}%</span>
                   </div>
                   <div class="progress">
                     <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </div>
-
-                <div class="skill-item">
-                  <div class="d-flex justify-content-between">
-                    <span>UI/UX Design</span>
-                    <span>85%</span>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-
-                <div class="skill-item">
-                  <div class="d-flex justify-content-between">
-                    <span>Cloud Architecture</span>
-                    <span>90%</span>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-
-                <div class="skill-item">
-                  <div class="d-flex justify-content-between">
-                    <span>Project Management</span>
-                    <span>80%</span>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
+                {% endfor %}
               </div>
             </div>
           </div>
@@ -435,30 +352,22 @@
             <!-- Experience Section -->
             <div class="resume-section" data-aos="fade-up">
               <h3><i class="bi bi-briefcase me-2"></i>Professional Experience</h3>
-
+              {% for experience in experiences %}
               <div class="resume-item">
-                <h4>Senior Software Architect</h4>
-                <h5>2022 - Present</h5>
-                <p class="company"><i class="bi bi-building"></i> Tech Innovations Inc.</p>
+                <h4>{{experience.title}}</h4>
+                <h5>{{experience.start_at.year}} - {% if experience.end_at %} {{experience.end_at.year}} {% else %} Present {% endif %}</h5>
+                <p class="company"><i class="bi bi-building"></i>{{experience.company}}</p>
                 <ul>
-                  <li>Lead the architectural design and implementation of enterprise-scale applications</li>
-                  <li>Mentor team of 12 developers and establish technical best practices</li>
-                  <li>Drive adoption of microservices architecture and cloud-native solutions</li>
-                  <li>Reduce system downtime by 75% through improved architecture and monitoring</li>
+                  {% for detail in experience.details.all %}
+                  <li>{{detail.text}}</li>
+                  {% endfor %}
+                  
+                  
                 </ul>
               </div>
+              {% endfor %}
 
-              <div class="resume-item">
-                <h4>Lead Developer</h4>
-                <h5>2019 - 2022</h5>
-                <p class="company"><i class="bi bi-building"></i> Digital Solutions Corp.</p>
-                <ul>
-                  <li>Spearheaded development of company's flagship product reaching 1M+ users</li>
-                  <li>Implemented CI/CD pipeline reducing deployment time by 60%</li>
-                  <li>Managed team of 8 developers across multiple projects</li>
-                  <li>Increased code test coverage from 45% to 90%</li>
-                </ul>
-              </div>
+              
             </div>
 
             <!-- Education Section -->
@@ -466,18 +375,15 @@
               <h3><i class="bi bi-mortarboard me-2"></i>Education</h3>
 
               <div class="resume-item">
-                <h4>Master of Science in Computer Science</h4>
-                <h5>2017 - 2019</h5>
-                <p class="company"><i class="bi bi-building"></i> Stanford University</p>
-                <p>Specialized in Artificial Intelligence and Machine Learning. Graduated with honors.</p>
+                {% for education in educations %}
+                <h4>{{education.university}}</h4>
+                <h5>{{education.start_at.year}} - {% if education.end_at %} {{education.end_at.year}} {% else %} Present {% endif %}</h5>
+                <p class="company"><i class="bi bi-building"></i>{{education.title}}</p>
+                <p>{{education.description}}</p>
+                {% endfor %}
               </div>
 
-              <div class="resume-item">
-                <h4>Bachelor of Science in Software Engineering</h4>
-                <h5>2013 - 2017</h5>
-                <p class="company"><i class="bi bi-building"></i> MIT</p>
-                <p>Dean's List all semesters. Led university's coding club.</p>
-              </div>
+              
             </div>
 
             <!-- Certifications Section -->
@@ -485,14 +391,13 @@
               <h3><i class="bi bi-award me-2"></i>Certifications</h3>
 
               <div class="resume-item">
-                <h4>AWS Certified Solutions Architect - Professional</h4>
-                <h5>2023</h5>
+                {% for certification in certifications %}
+                <h4>{{certification.title}}</h4>
+                <h5>{{certification.start_at.year}}</h5>
+                {% endfor %}
               </div>
 
-              <div class="resume-item">
-                <h4>Google Cloud Professional Architect</h4>
-                <h5>2022</h5>
-              </div>
+              
             </div>
           </div>
         </div>
@@ -507,7 +412,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Portfolio</h2>
-        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        <p>Explore a selection of my recent projects that showcase my skills in backend development, cloud architecture, and full-stack design. Each project reflects my commitment to clean code, scalable architecture, and user-centered design. </p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -919,7 +824,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Contact</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        {% comment %} <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p> {% endcomment %}
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -968,7 +873,7 @@
           <div class="d-flex justify-content-cente">
             <div class="contact-form">
               <h3>Get In Touch</h3>
-              <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ante ipsum primis.</p>
+              <p></p>
 
               <form action="forms/contact.php" method="post" class="php-email-form">
                 <div class="row gy-4">
@@ -1011,22 +916,7 @@
 
   </main>
 
-  <footer id="footer" class="footer position-relative">
-
-    <div class="container">
-      <div class="copyright text-center ">
-        <p>© <span>Copyright</span> <strong class="px-1 sitename">iPortfolio</strong> <span>All Rights Reserved</span></p>
-      </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you've purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
-    </div>
-
-  </footer>
+  
 
   <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
