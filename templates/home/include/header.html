@@ -6,8 +6,14 @@
 <meta name="keywords" content="" />
 
 <!-- Favicons -->
-<link href="{% static "img/favicon.png" %}%}" rel="icon">
-<link href="{% static 'img/favicon.png' %}" rel="icon" />
+{% if profile.favicon %}
+<link href="{{ profile.favicon.url }}" rel="shortcut icon" />
+<link href="{{ profile.favicon.url }}" rel="icon" />
+{% else %}
+<link href="{% static 'img/default-favicon.ico' %}" rel="shortcut icon" />
+<link href="{% static 'img/default-favicon.ico' %}" rel="icon" />
+{% endif %}
+
 <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon" />
 
 <!-- Fonts (external links, don't use static) -->

@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 
 class Job(models.Model):
@@ -9,6 +10,7 @@ class Job(models.Model):
 
 
 class Profile(models.Model):
+    favicon = models.ImageField(upload_to='favicons', blank=True)
     EXPERIENCE_LEVEL_CHOICES = [
         ('intern', 'Intern'),
         ('junior', 'Junior Developer'),
@@ -116,3 +118,59 @@ class Portfolio(models.Model):
     
     def __str__(self):
         return f"{self.title}"
+    
+    
+    
+    
+    
+    class PortfolioCategory(models.Model):
+        name = models.CharField(max_length=100)
+        description = models.TextField(blank=True, null=True)
+
+        def __str__(self):
+            return self.name
+    
+    
+
+class PortfolioCategory(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+
+class Portfolio(models.Model):
+    category = models.ForeignKey(
+        PortfolioCategory, 
+        on_delete=models.CASCADE, 
+        related_name='portfolios' , # this is the key name you should use in prefetch_related
+        default=1
+    )
+    title = models.CharField(max_length=255)
+    description = models.TextField(blank=True)
+    image = models.ImageField(upload_to='portfolio_images/',null=True,blank=True)
+    project_url = models.URLField(blank=True, null=True)
+
+    def __str__(self):
+        return self.title
+    
+    
+class Contact(models.Model):
+    STATUS_ANSWERD = '🟢Answered'
+    STATUS_PENDING = '🟡Pending'
+    SITUATION = [
+        (STATUS_ANSWERD, '🟢Answered'),
+        (STATUS_PENDING, '🟡Pending'),
+    ]
+
+    name = models.CharField(max_length=100)
+    subject = models.CharField(max_length=100)
+    phone_number = models.CharField(max_length=20)
+    email = models.EmailField()
+    comments = models.TextField()
+    status = models.CharField(choices=SITUATION, max_length=10 , default=STATUS_PENDING)
+    created_at = models.DateTimeField(auto_now_add=True)  
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.id}. {self.name} situation: {self.status}'

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Profile, Experience, ExperienceDetail, Job, SkillBox, Skill, Education, Certification , Portfolio
+from .models import Profile, Experience, ExperienceDetail,Contact, Job, SkillBox, Skill, Education, Certification , Portfolio ,PortfolioCategory
 
 
 # ----------- Job Admin -----------
@@ -47,3 +47,15 @@ class ExperienceAdmin(admin.ModelAdmin):
 admin.site.register(Education)
 admin.site.register(Certification)
 admin.site.register(Portfolio)
+admin.site.register(PortfolioCategory)
+@admin.register(Contact)
+class contact_admin(admin.ModelAdmin):
+    list_display = ('id','name','email','phone_number','short_comments','status')
+    list_editable = ['status']
+    List_per_page = 10
+    search_fields = ['name','id']
+
+    def short_comments(self, obj):
+        return f'{obj.comments[:20]}...'  # Truncate the first 20 characters of the comments
+
+    short_comments.short_description = 'Comments'

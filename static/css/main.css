@@ -1262,7 +1262,11 @@ section,
   font-family: var(--heading-font);
   opacity: 0.8;
 }
-
+.sent-message,
+.error-message,
+.loading {
+  display: none;
+}
 /*--------------------------------------------------------------
 # Skills Section
 --------------------------------------------------------------*/
