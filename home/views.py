@@ -1,11 +1,12 @@
 from django.shortcuts import render
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.core.mail import EmailMessage
-from django.conf import settings
+from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_protect
+import os
+import resend
 from .forms import ContactForm
-from .models import Profile , Job,SkillBox,Skill,Experience,Education,Certification,Contact,PortfolioCategory,Portfolio
+from .models import Profile, Job, SkillBox, Skill, Experience, Education, Certification, Contact, PortfolioCategory, Portfolio
+
+resend.api_key = os.environ.get('RESEND_API_KEY')
 
 # Create your views here
 
@@ -15,12 +16,10 @@ def home(request):
     experiences = Experience.objects.filter(profile=profile)
     educations = profile.Educations.all()
     certifications = profile.Certifications.all()
-    
-    
+
     portfolio_cat = PortfolioCategory.objects.prefetch_related('portfolios').all()
     portfolios = Portfolio.objects.select_related('category').all()
-    
-    
+
     return render(request, 'home/index.html', {
         'profile': profile,
         'skillboxes': skillboxes,
@@ -31,8 +30,7 @@ def home(request):
         'portfolios': portfolios,
     })
 
-    
-    
+
 @csrf_protect
 def submit_form(request):
     if request.method == 'POST':
@@ -42,14 +40,14 @@ def submit_form(request):
             try:
                 email_sender(data)
                 contact_us(data)
-                return JsonResponse({'success': True})
+                return HttpResponse('OK')
             except Exception as e:
                 print(f"Error while sending email or saving to DB: {e}")
-                return JsonResponse({'success': False, 'error': str(e)})
+                return HttpResponse(str(e), status=400)
         else:
-            print("Form is invalid:", form.errors)  # ✅ This will show you what failed
-            return JsonResponse({'success': False, 'errors': form.errors})
-    return JsonResponse({'success': False})
+            errors = ', '.join([f"{field}: {', '.join(msgs)}" for field, msgs in form.errors.items()])
+            return HttpResponse(errors, status=400)
+    return HttpResponse('Invalid request', status=400)
 
 
 def email_sender(data):
@@ -62,17 +60,14 @@ def email_sender(data):
         f"Comments: {data['comments']}"
     )
 
-    email = EmailMessage(
-        subject=subject,
-        body=body,
-        from_email=settings.EMAIL_HOST_USER,
-        to=['erfanshadkam@outlook.com'],
-    )
-    try:
-        email.send()
-    except Exception as e:
-        print(f"Email send error: {e}")
-        raise
+    params = {
+        "from": "onboarding@resend.dev",  # switch to your verified domain sender later, e.g. sender@erfanshadkam.ir
+        "to": ["erfanshaadkam@gmail.com"],
+        "subject": subject,
+        "text": body,
+    }
+
+    resend.Emails.send(params)
 
 
 def contact_us(data):
