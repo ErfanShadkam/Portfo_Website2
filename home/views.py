@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from django.views.decorators.csrf import csrf_protect
 import os
 import resend
@@ -40,14 +40,13 @@ def submit_form(request):
             try:
                 email_sender(data)
                 contact_us(data)
-                return HttpResponse('OK')
+                return JsonResponse({'success': True})
             except Exception as e:
                 print(f"Error while sending email or saving to DB: {e}")
-                return HttpResponse(str(e), status=400)
+                return JsonResponse({'success': False, 'errors': {'form': [str(e)]}}, status=400)
         else:
-            errors = ', '.join([f"{field}: {', '.join(msgs)}" for field, msgs in form.errors.items()])
-            return HttpResponse(errors, status=400)
-    return HttpResponse('Invalid request', status=400)
+            return JsonResponse({'success': False, 'errors': form.errors}, status=400)
+    return JsonResponse({'success': False, 'errors': {'form': ['Invalid request']}}, status=400)
 
 
 def email_sender(data):
@@ -62,7 +61,7 @@ def email_sender(data):
 
     params = {
         "from": "onboarding@resend.dev",  # switch to your verified domain sender later, e.g. sender@erfanshadkam.ir
-        "to": ["erfanshaadkam@gmail.com"],
+        "to": ["erfanshadkam@outlook.com"],
         "subject": subject,
         "text": body,
     }
